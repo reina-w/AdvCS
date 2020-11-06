@@ -1,0 +1,554 @@
+hello
+你好 ni hao
+thank you
+谢谢 xie xie
+bye
+再见 zai jian
+sorry
+对不起 dui bu qi 
+name
+名字 ming zi
+country
+国家 guo jia
+language
+语言 yu yan
+english
+英语 ying yu
+united states
+美国 mei guo
+chinese
+中文 zhong wen
+china
+中国 zhong guo
+spanish
+西班牙语 xi ban ya yu
+spain
+西班牙 xi ban ya
+french
+法语 fa yu
+france
+法国 france
+i
+我 wo
+you 
+你 ni
+he
+他 ta
+she 
+她 ta
+it
+它 ta
+we
+我们 wo men
+they
+他们 ta men
+family
+家庭 jia ting
+home
+家 jia 
+father
+父亲 fu qin
+dad
+爸爸 ba ba
+mother
+母亲 mu qin
+mom
+妈妈 ma ma
+sister
+姐姐 jie jie / 妹妹 mei mei
+brother
+哥哥 ge ge / 弟弟 di di
+grandfather
+爷爷 ye ye / 外公 wai gong
+grandmother
+奶奶 nai nai / 外婆 wai po
+aunt
+阿姨 a yi
+uncle
+叔叔 shu shu
+body
+身体 shen ti
+face
+脸 lian
+head
+头 tou
+brain
+脑子 nao zi
+forehead
+额头 e tou
+eye
+眼睛 yan jing
+glasses
+眼镜 yan jing
+nose
+鼻子 bi zi
+mouth
+嘴巴 zui ba
+tooth
+牙齿 ya chi
+tongue
+舌头 she tou
+ear
+耳朵 er duo
+skin
+皮肤 pi fu
+arm
+手臂 shou bi
+hand
+手 shou
+finger
+手指
+leg
+腿 tui
+foot
+脚 jiao
+nail
+指甲 shi jia
+number
+数字 shu zi
+one
+一 yi
+two
+二 er
+three
+三 san
+four 
+四 si
+five
+五 wu
+six 
+六 liu
+seven
+七 qi
+eight
+八 ba
+nine
+九 jiu
+ten
+十 shi
+eleven
+十一 shi yi
+twelve
+十二 shi er
+thirteen
+十三 shi san
+fourteen
+十四 shi si
+fifteen
+十五 shi wu
+sixteen
+十六 shi liu
+seventeen
+十七 shi qi
+eighteen
+十八 shi ba
+ninetenn
+十九 shi jiu
+twenty
+二十 er shi
+thirty
+三十 san shi
+fourty
+四十 si shi
+fifty
+五十 wu shi
+sixty
+六十 liu shi
+seventy
+七十 qi shi
+eighty 
+八十 ba shi
+ninety 
+九十 jiu shi
+hundred
+一百 yi bai
+color
+颜色 yan se
+red
+红 hong
+yellow
+黄 huang
+orange
+橙 cheng
+green
+绿 lü
+blue 
+蓝 lan
+purple
+紫 zi
+black
+黑 hei
+white
+白 bai
+pink
+粉 fen
+grey
+灰 hui
+silver 
+银 ying
+gold 
+金 jin
+animal
+动物 dong wu
+dog
+狗 gou
+cat
+猫 mao
+duck
+鸭子 ya zi
+mouse
+老鼠 lao shu
+cow
+奶牛 nai niu
+tiger
+老虎 lao hu
+rabbit
+兔子 tu zi
+dragon
+龙 long
+snake
+蛇 she
+horse 
+马 ma
+sheep
+羊 yang
+monkey
+猴 hou
+chicken
+鸡 ji
+pig
+猪 zhu
+bear
+熊 xiong
+panda
+熊猫 xiong mao
+frog
+青蛙 qing wa
+lion 
+狮子 shi zi
+bird
+鸟 niao
+bat
+蝙蝠
+pigeon
+鸽子 ge zi
+butterfly
+蝴蝶 hu die
+donkey
+驴 lü
+eagle
+老鹰 lao ying
+bee
+蜜蜂 mi feng
+caterpillar
+毛毛虫 mao mao chong
+ant
+蚂蚁 ma yi
+spider
+蜘蛛 zhi zhu
+fish
+鱼 yu
+crab
+螃蟹 pang xie
+dolphin
+海豚 hai tun
+whale
+鲸鱼 jing yu
+octupus
+章鱼 zhang yu
+zebra
+斑马 ban ma
+meat
+肉 rou
+beef
+牛肉 niu rou
+pork 
+猪肉 zhu rou
+fruit
+水果 shui guo
+apple
+苹果 ping guo
+banana 
+香蕉 xiang jiao
+grape
+葡萄 pu tao
+pear
+梨 li
+peach
+桃子 tao zi
+strawberry
+草莓 cao mei
+blueberry
+蓝莓 lan mei
+blackberry
+黑莓 hei mei
+cranberry
+蔓越莓 man yue mei
+watermelon
+西瓜 xi gua
+pineapple
+菠萝 bo luo
+kiwi
+猕猴桃 mi hou tao
+coconut
+椰子 ye zi
+mango
+芒果 mang guo
+plant
+植物 zhi wu
+flower
+花 hua
+tree
+树 shu
+grass
+草 cao
+leaf
+叶子 ye zi
+forest
+森林 sen lin
+vegetable
+蔬菜 shu cai
+salad 
+色拉 se la
+tomato
+番茄 fan qie
+cucumber
+黄瓜 huang gua
+corn
+玉米 yu mi
+spinach
+菠菜 bo cai
+lettuce
+生菜 sheng cai
+carrot
+胡萝卜 hu luo bo
+onion
+洋葱 yang cong
+food
+食物 shi wu
+bread 
+面包 mian bao
+cheese
+芝士 zhi shi
+pizza
+匹萨 pi sa
+cake
+蛋糕 dan gao
+egg
+鸡蛋 ji dan
+hamburger
+汉堡 han bao
+pasta
+意面 yi mian
+soup
+汤 tang
+dumpling
+饺子 jiao zi
+ice cream
+冰激凌 bing ji ling
+chocolate
+巧克力 qiao ke li
+tea
+茶 cha
+coffee
+咖啡 ka fei
+action
+动作 dong zuo
+sit
+坐 zuo
+stand
+站 zhan
+eat
+吃 chi
+drink
+喝 he
+see
+看 kan
+look
+看 kan
+watch
+看 kan
+listen
+听 ting
+smell
+闻 wen
+taste
+尝 chang
+sing
+唱歌 chang ge
+dance
+跳舞 tiao wu
+act
+演 yan
+play
+玩 wan
+speak
+说 shuo
+say
+说 shuo
+talk
+说话 shuo hua
+learn 
+学 xue
+teach
+教 jiao
+answer
+回答 hui da
+move
+动 dong
+catch
+抓 zhua
+stop
+停 ting
+smile
+微笑 wei xiao
+laugh
+大笑 da xiao
+cry
+哭 ku
+shout
+大叫 da jiao
+sleep 
+睡觉 shui jiao
+sport
+运动 yun dong
+tennis
+网球 wang qiu
+basketball
+篮球 lan qiu
+volleyball
+排球 pai qiu
+ice hockey
+冰球 bing qiu
+field hockey
+曲棍球
+baseball
+棒球 bang qiu
+softball
+垒球 lei qiu
+soccer
+足球 zu qiu
+football
+橄榄球 gan lan qiu
+squash
+壁球 bi qiu
+lacrosse
+长曲棍球 chang qu gun qiu
+run
+跑步 pao bu
+jog
+慢跑 man pao
+golf
+高尔夫 gao er fu
+taekwondo
+跆拳道 tao quan dao
+badminton
+羽毛球 yu mao qiu
+table tennis
+乒乓球 ping pang qiu
+swim
+游泳 you yong
+ski
+滑雪 hua xue
+yoga
+瑜伽 yu jia
+music
+音乐 yin yue
+piano
+钢琴 gang qin
+violin
+小提琴 xiao ti qin
+cello
+大提琴 da ti qin
+guitar
+吉他 ji ta
+drum
+鼓 gu
+keyboard
+键盘
+flute
+笛子 di zi
+job
+工作 gong zuo
+police
+警察 jing cha
+teacher
+老师 lao shi
+doctor
+医生 yi sheng
+nurse
+护士 hu shi
+farmer
+农民 nong min
+fireman
+消防员 xiao fang yue
+cook
+厨师 chu shi
+singer
+歌手 ge shou
+dancer
+舞蹈家 wu dao jia
+astronaut
+宇航员 yu hang yuan
+scientist
+科学家 ke xue jia
+president
+总统 zong tong
+artist
+艺术家 yi shu jia
+painter
+画家 hua jia
+school
+学校 xue xiao
+classroom
+教室 jiao shi
+chair
+椅子 yi zi
+desk
+桌子 zhuo zi
+blackboard
+黑板 hei ban
+window
+窗户 chuang hu
+door
+门 men
+computer
+电脑 dian nao
+hallway
+走廊 zou lang
+building
+楼 lou
+dorm
+宿舍 su she
+bed
+床 chuang
+library
+图书馆 tu shu guan
+office 
+办公室
+dining hall
+食堂 shi tang
+bathroom
+洗手间 xi shou jian
+gym
+体育馆 ti yu guan
+transportation
+交通 jiao tong
+car
+车 che
+bus
+公交车 gong jiao che
+bicycle
+自行车 zi xing che
+motocycle
+摩托车 mo tuo che
+truck
+卡车 ka che
+train
+火车 huo che
+subway
+地铁 di tie
+plane
+飞机 fei ji
+ship
+船 chuan 
