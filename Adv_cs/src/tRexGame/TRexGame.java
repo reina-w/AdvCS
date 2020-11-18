@@ -20,13 +20,18 @@ public class TRexGame {
 	private final int WIDTH = 1200, HEIGHT = 800;
 	private int dXloc = 60, dYloc = 500, dWidth = 180, dHeight = 184;
 	private int gXloc = 0, gYloc = 630, gWidth = WIDTH, gHeight = 160;
+	private int rXloc_1 = 400, rYloc_1 = 530,rWidth_1 = 250, rHeight_1 = 200; 
+	private int rXloc_2 = 800, rYloc_2 = 558,rWidth_2 = 200, rHeight_2 = 150; 
 	private Image dino, ground, rock;
 	private String cScore = "SCORE: 0000",
 			hScore = "BEST: 0000",
 			start = "TAP TO START";
 	private int startSize = 50, startX = 420, startY= 400;
 	private int scoreSize = 25, scoreY = 40, cScoreX = 500, hScoreX = 1000;
+	
 	private dinosaur d = new dinosaur(dXloc, dYloc, dWidth, dHeight);
+	private rock r_1 = new rock(rXloc_1, rYloc_1, rWidth_1, rHeight_1);
+	private rock r_2 = new rock(rXloc_2, rYloc_2, rWidth_2, rHeight_2);
 
 	public TRexGame() {
 		
@@ -41,9 +46,13 @@ public class TRexGame {
 			public void paint(Graphics g) {
 				
 				g.drawImage(ground, gXloc, gYloc, gWidth, gHeight, this);
-				g.drawImage(dino, dXloc, dYloc, dWidth, dHeight, this);
-				g.drawImage(rock, 400, 530, 250, 200, this);
-				g.drawImage(rock, 800, 558, 200, 150, this);
+//				g.drawImage(dino, dXloc, dYloc, dWidth, dHeight, this);
+//				g.drawImage(rock, 400, 530, 250, 200, this);
+//				g.drawImage(rock, 800, 558, 200, 150, this);
+				
+				d.draw(g);
+				r_1.draw(g);
+				r_2.draw(g);
 				
 				g.setFont(new Font("TimesRoman", Font.BOLD, startSize)); 
 				g.drawString(start, startX, startY);
@@ -94,6 +103,9 @@ public class TRexGame {
 		while(true) {
 			
 			d.move();
+			r_1.move();
+			r_2.move();
+			
 			frame.getContentPane().repaint();
 			try {
 				Thread.sleep(50);

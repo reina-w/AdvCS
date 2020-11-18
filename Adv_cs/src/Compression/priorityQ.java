@@ -54,8 +54,8 @@ public class priorityQ<T> {
 	public static void main(String args[]) {
 		
 		priorityQ<Character> pq = new priorityQ<Character>();
-		pq.add('a', 5);
-		pq.add('n', 10);
+		pq.add(new Node('a', 5));
+		pq.add(new Node('n', 10));
 	}
 
 }
