@@ -7,12 +7,12 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class rock extends Rectangle {
+public class rock extends Rectangle{
 	
-	private int xloc, yloc, width, height;
 	private int xMax = 1200;
-	private int v = 5;
-	private Image rock = Toolkit.getDefaultToolkit().getImage("rock.png");
+	private int v = 12;
+	private int x_i = x;
+	private Image rock = Toolkit.getDefaultToolkit().getImage("rock_1.png");
 	
 	public rock(int xloc, int yloc, int width, int height) {
 		
@@ -25,6 +25,10 @@ public class rock extends Rectangle {
 	
 	public void move() {
 		x -= v;
-		if(x <= 0) x = xMax;
+		if(x <= -20) x = xMax;
+	}
+	
+	public void reset() {
+		x = x_i;
 	}
 }
