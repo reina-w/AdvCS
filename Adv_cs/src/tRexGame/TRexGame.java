@@ -37,7 +37,7 @@ public class TRexGame {
 	private Image ground, sky;
 	private ImageIcon win, smallWin;
 	
-	//boolean indicating if the game has started or not
+	//boolean indicating if the game has started / new record or not 
 	private boolean startGame = false;
 
 	public TRexGame() {
@@ -67,6 +67,7 @@ public class TRexGame {
 				g.setColor(Color.BLACK);
 				g.setFont(new Font("TimesRoman", Font.BOLD, startSize));
 				if(!startGame) g.drawString(start, startX, startY);
+			
 				g.setFont(new Font("TimesRoman", Font.BOLD, scoreSize)); 
 				g.drawString("SCORE: " + curScore, cScoreX, scoreY);
 				g.drawString("BEST: " + highScore, hScoreX, scoreY);
@@ -125,7 +126,7 @@ public class TRexGame {
 				b_3.move();
 				
 				//gain a point once jumps over a box
-				if(b_1.x <= -8 || b_2.x <= -8 || b_3.x <= -8) curScore++;
+				if(b_1.x <= -10 || b_2.x <= -10 || b_3.x <= -10) curScore++;
 			}
 			
 			//check whether dinosaur hits the box
