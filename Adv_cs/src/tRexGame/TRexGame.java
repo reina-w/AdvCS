@@ -29,7 +29,7 @@ public class TRexGame {
 	private int startSize = 50, startX = 420, startY= 400;
 	private int scoreSize = 25, scoreY = 40, cScoreX = 500, hScoreX = 1000;
 
-	//initializing the objects (dinosaur and boxes)
+	//initializing the objects (both dinosaur and boxes)
 	private dinosaur d = new dinosaur(dXloc, dYloc, dWidth, dHeight);
 	private box b_1 = new box(bXloc_1, bYloc_1, bWidth_1, bHeight_1);
 	private box b_2 = new box(bXloc_2, bYloc_2, bWidth_2, bHeight_2);
