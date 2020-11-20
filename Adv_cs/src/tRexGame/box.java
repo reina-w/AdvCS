@@ -7,14 +7,15 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class rock extends Rectangle{
+public class box extends Rectangle{
 	
 	private int xMax = 1200;
-	private int v = 12;
+	private double v = 10;
+	private double dv = 0.005;
 	private int x_i = x;
-	private Image rock = Toolkit.getDefaultToolkit().getImage("rock_1.png");
+	private Image rock = Toolkit.getDefaultToolkit().getImage("box.png");
 	
-	public rock(int xloc, int yloc, int width, int height) {
+	public box(int xloc, int yloc, int width, int height) {
 		
 		super(xloc, yloc, width, height);
 	}
@@ -25,6 +26,7 @@ public class rock extends Rectangle{
 	
 	public void move() {
 		x -= v;
+		v += dv;
 		if(x <= -20) x = xMax;
 	}
 	
