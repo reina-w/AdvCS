@@ -51,7 +51,7 @@ public class PhotoshopFiller extends Component {
         outputName = "flipped_" + outputName;
         
         if(horizontally) {
-        	for(int i = 0; i < pixels[i].length; i++) {
+        	for(int i = 0; i < pixels.length; i++) {
             	for(int j = 0; j < pixels[i].length/2; j++) {
             		Color c = pixels[i][j];
             		pixels[i][j] = pixels[i][pixels[i].length-j-1];
@@ -78,7 +78,7 @@ public class PhotoshopFiller extends Component {
     public void negate() {
         outputName = "negated_" + outputName;
         
-        for(int i = 0; i < pixels[i].length; i++) {
+        for(int i = 0; i < pixels.length; i++) {
         	for(int j = 0; j < pixels[i].length; j++) {
         		Color c = pixels[i][j];
         		pixels[i][j] = new Color(
@@ -119,23 +119,12 @@ public class PhotoshopFiller extends Component {
     public void blur() {
 		outputName = "blurred_" + outputName;
 		
-		for(int i = 1; i < pixels[i].length-1; i++) {
+		for(int i = 1; i < pixels.length-1; i++) {
         	for(int j = 1; j < pixels[i].length-1; j++) {
         		
         		int sumR = 0;
         		int sumG = 0;
         		int sumB = 0;
-        		
-        		if(i == 0 && j == 0) {
-        			for(int k = 0; k <= 1; k++) {
-            			for(int l = 0; l <= 1; l++) {
-            				Color c = pixels[i+k][j+l];
-            				sumR += c.getRed();
-            				sumG += c.getGreen();
-            				sumB += c.getBlue();
-            			}
-            		}
-        		}
         		
         		for(int k = -1; k <= 1; k++) {
         			for(int l = -1; l <= 1; l++) {
@@ -157,7 +146,30 @@ public class PhotoshopFiller extends Component {
     public void edge() {
         outputName = "edged_" + outputName;
 
-        // your code here
+        for(int i = 1; i < pixels.length-1; i++) {
+        	for(int j = 1; j < pixels[i].length-1; j++) {
+        		
+        		Color cur = pixels[i][j];
+        		int sumR = 0;
+        		int sumG = 0;
+        		int sumB = 0;
+        		
+        		for(int k = -1; k <= 1; k++) {
+        			for(int l = -1; l <= 1; l++) {
+        				Color c = pixels[i+k][j+l];
+        				sumR += c.getRed();
+        				sumG += c.getGreen();
+        				sumB += c.getBlue();
+        			}
+        		}
+        		//since the current pixels are contained in the sums, 
+        		//so I multiplied the value by 9 instead of 8
+        		pixels[i][j] = new Color(
+        				cur.getRed()*9-sumR, 
+        				cur.getGreen()*9-sumG, 
+        				cur.getBlue()*9-sumB);
+        	}
+        }
     }
     
     
