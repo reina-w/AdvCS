@@ -3,7 +3,10 @@ package Compression;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -23,6 +26,10 @@ class branch {
     	this.info = info;
         this.isLeaf = true;
     }
+    
+    public String toString() {
+    	return ""+info;
+    }
 }
 
 
@@ -36,6 +43,7 @@ public class huffmanEncoding {
 		//base case
 		if(b.isLeaf) {
 			codeMap.put(b.info, code);
+			return;
 		}
 		
 		//recursive case
@@ -43,12 +51,16 @@ public class huffmanEncoding {
 		createCode(right, code + "1");
 	}
 	
-	void printCodeMap() {
+	void printCodeMap() throws IOException {
+		
+		PrintWriter pw = new PrintWriter(new FileWriter("codeMap.txt"));
 		
 		Set<Character> keys = codeMap.keySet();
 		for(char ch : keys) {
-			System.out.println(ch + " = " + codeMap.get(ch));
+			pw.println(ch);
+			pw.println(codeMap.get(ch));
 		}
+		pw.close();
 	}
 	
 	void compress() throws IOException {
@@ -56,34 +68,62 @@ public class huffmanEncoding {
 		BufferedBitWriter bw = new BufferedBitWriter("textCompressed");
 		BufferedReader in = new BufferedReader(new FileReader("story.txt"));
 		
-		while(in.read() != -1) {
+		int i = 0;
+		while((i = in.read()) != -1) {
 			
-			Character ch = (char)in.read();
+			char ch = (char)i;
+//			System.out.println(ch);
 			String code = codeMap.get(ch);
-			for(int i=0; i<code.length(); i++) {
-				if(code.charAt(i) == '0') bw.writeBit(false);
+			for(int j=0; j<code.length(); j++) {
+				if(code.charAt(j) == '0') bw.writeBit(false);
 				else bw.writeBit(true);
 			}
 		}
 		
 		bw.close();
+		in.close();
 	}
 	
-	void decompress() {
+	void decompress() throws IOException{
 		
+		PrintWriter pw = new PrintWriter(new FileWriter("textDecompressed"));
+		BufferedBitReader br = new BufferedBitReader("textCompressed");
+		Set<String> dekeys = deCodeMap.keySet();
+		
+		String code = "";
+		while (br.hasNext()) { 
+			
+			boolean bit = br.readBit(); 
+			
+			if(bit) code += "1";
+			else code += "0";
+			
+			for(String s : dekeys) {
+				if(code.equals(s)) {
+					pw.print(deCodeMap.get(s));
+					code = "";
+					break;
+				}
+			}
+		}
+		pw.close();
+		br.close();
 	}
 	
 	HashMap<Character, Integer> readMap = new HashMap<Character, Integer>();
 	HashMap<Character, String> codeMap = new HashMap<Character, String>();
+	HashMap<String, Character> deCodeMap = new HashMap<String, Character>();
 	priorityQ<branch> pq = new priorityQ<branch>();
 	
 	public huffmanEncoding () throws IOException {
 		
 		BufferedReader in = new BufferedReader(new FileReader("story.txt"));
 		
-		while(in.read() != -1) {
+		int i = 0;
+		while((i = in.read()) != -1) {
 			
-			Character ch = (char)in.read();
+			char ch = (char)i;
+//			ch = ch.toLowerCase(ch);
 			if(readMap.get(ch) == null) readMap.put(ch, 1);
 			else readMap.put(ch, readMap.get(ch)+1);
 		}
@@ -103,9 +143,22 @@ public class huffmanEncoding {
 			pq.add(new branch(b1.info, b2.info, false), p);
 		}
 		
-		createCode(pq.pop().info, "");
 		
+		createCode(pq.pop().info, "");
 		printCodeMap();
+		compress();
+		
+		BufferedReader br= new BufferedReader(new FileReader("codeMap.txt"));
+		
+		for(String line = br.readLine(); line != null; line = br.readLine()) {
+			
+			Character a = line.charAt(0);
+			String b = br.readLine();
+			deCodeMap.put(b, a);
+		}
+		
+		br.close();
+		decompress();
 	}
 	
 

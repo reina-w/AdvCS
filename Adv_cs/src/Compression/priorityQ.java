@@ -24,9 +24,8 @@ public class priorityQ<T> {
 		
 		if(queue.size() == 0) {
 			queue.add(newNode);
-		}
-		
-		if(queue.get(0).priority < newNode.priority) {
+			
+		} else if(queue.get(0).priority < newNode.priority) {
 			queue.add(0, newNode);
 			
 		} else if (queue.get(queue.size()-1).priority > newNode.priority) {
