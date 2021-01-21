@@ -3,18 +3,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Graph<E> {
+public class LabeledGraph<E, T> {
 	
 	HashMap<E, Vertex> vertices;
 	
 	private class Vertex {
 		
 		E info;
-		HashSet<Vertex> neighbors;
+		HashSet<Edge> edges;
 		
 		public Vertex(E info) {
 			this.info = info;
-			neighbors = new HashSet<Vertex>();
+			edges = new HashSet<Edge>();
 		}
 		
 		public boolean equals(Vertex other) {
@@ -22,8 +22,25 @@ public class Graph<E> {
 		}
 	}
 	
+	private class Edge {
+		
+		Vertex v1, v2;
+		T label;
+		
+		public Edge(T label, Vertex v1, Vertex v2) {
+			this.label = label;
+			this.v1 = v2;
+			this.v2 = v2;
+		}
+		
+		public Vertex getNeighbor(Vertex v) {
+			
+			if(v.info.equals(v1.info)) return v2;
+			return v1; 
+		}
+	}
 	
-	public Graph() {
+	public LabeledGraph() {
 		
 		vertices = new HashMap<E, Vertex>();
 	}
@@ -32,26 +49,27 @@ public class Graph<E> {
 		vertices.put(info, new Vertex(info));
 	}
 	
-	public void connect(E info1, E info2) {
+	public void connect(E info1, E info2, T label) {
 		
 		Vertex v1 = vertices.get(info1);
 		Vertex v2 = vertices.get(info2);
 		
-		if(v1 != null && v2 != null) {
-			v1.neighbors.add(v2);
-			v2.neighbors.add(v1);
-		}
+		Edge e = new Edge(label, v1, v2);
+		
+		v1.edges.add(e);
+		v2.edges.add(e);
 	}
 	
 
-	public ArrayList<E> backTrace(Vertex target, HashMap<Vertex, Vertex> leads) {
+	public ArrayList<Object> backTrace(Vertex target, HashMap<Vertex, Edge> leads) {
 		
-		ArrayList<E> path = new ArrayList<E>();
+		ArrayList<Object> path = new ArrayList<Object>();
 		Vertex curr = target;
 	
 		while(curr != null) {
+			path.add(0, leads.get(curr));
 			path.add(0, curr.info);
-			curr = leads.get(curr);
+			curr = leads.get(curr).getNeighbor(curr);
 		}
 		
 //		System.out.println(path);
@@ -63,20 +81,23 @@ public class Graph<E> {
 		
 		ArrayList<Vertex> toVisit = new ArrayList<>();
 		toVisit.add(vertices.get(start));
+		
 		HashSet<Vertex> visited = new HashSet<Vertex>();
 		visited.add(vertices.get(start));
 		
-		HashMap<Vertex, Vertex> leadsTo = new HashMap<Vertex, Vertex>();
+		HashMap<Vertex, Edge> leadsTo = new HashMap<Vertex, Edge>();
 		
 		while(!toVisit.isEmpty()) {
 			
 			Vertex curr = toVisit.remove(0);
 			
-			for(Vertex n : curr.neighbors) {
+			for(Edge e : curr.edges) {
+				
+				Vertex n = e.getNeighbor(curr);
 				
 				if(visited.contains(n)) continue;
 				
-				leadsTo.put(n, curr);
+				leadsTo.put(n, e);
 				if(n.info.equals(target)) {
 					
 //					System.out.println("FOUND IT!");
@@ -97,34 +118,8 @@ public class Graph<E> {
 	
 	public static void main(String[] args) {
 		
-		Graph<String> g = new Graph<String>();
+		LabeledGraph<String, String> g = new LabeledGraph<String, String>();
 		
-		g.addVertex("Reina");
-		g.addVertex("Veronika");
-		g.addVertex("Felicity");
-		g.addVertex("Andria");
-		g.addVertex("Elgin");
-		g.addVertex("Thomas");
-		g.addVertex("David");
-		g.addVertex("Katie");
-		g.addVertex("Lucas");
-		g.addVertex("Jackson");
-		
-		g.connect("Reina", "Lucas");
-		g.connect("Reina", "Jackson");
-		g.connect("Lucas", "Felicity");
-		g.connect("Jackson", "Lucas");
-		g.connect("Felicity", "Jackson");
-		g.connect("Felicity", "Andria");
-		g.connect("Andria", "Reina");
-		g.connect("Andria", "Thomas");
-		g.connect("Thomas", "David");
-		g.connect("Felicity", "Elgin");
-		g.connect("Elgin", "Katie");
-	
-		
-		g.BFS("Reina", "Katie");
-		g.BFS("Felicity", "David");
 	}
 	
 
