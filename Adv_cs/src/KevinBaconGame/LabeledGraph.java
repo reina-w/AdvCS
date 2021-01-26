@@ -20,6 +20,10 @@ public class LabeledGraph<E, T> {
 		public boolean equals(Vertex other) {
 			return info.equals(other.info);
 		}
+		
+		public String toString() {
+			return info.toString();
+		}
 	}
 	
 	private class Edge {
@@ -29,7 +33,7 @@ public class LabeledGraph<E, T> {
 		
 		public Edge(T label, Vertex v1, Vertex v2) {
 			this.label = label;
-			this.v1 = v2;
+			this.v1 = v1;
 			this.v2 = v2;
 		}
 		
@@ -37,6 +41,10 @@ public class LabeledGraph<E, T> {
 			
 			if(v.info.equals(v1.info)) return v2;
 			return v1; 
+		}
+		
+		public String toString() {
+			return label.toString();
 		}
 	}
 	
@@ -61,16 +69,22 @@ public class LabeledGraph<E, T> {
 	}
 	
 
-	public ArrayList<Object> backTrace(Vertex target, HashMap<Vertex, Edge> leads) {
+	public ArrayList<Object> backTrace(Vertex start, Vertex target, HashMap<Vertex, Edge> leads) {
 		
 		ArrayList<Object> path = new ArrayList<Object>();
 		Vertex curr = target;
 	
-		while(curr != null) {
-			path.add(0, leads.get(curr));
+//		System.out.println(leads.get(curr).getNeighbor(curr));
+		while(curr != start) {
+			
+//			System.out.println(curr.info);
 			path.add(0, curr.info);
+			path.add(0, leads.get(curr));
+			
 			curr = leads.get(curr).getNeighbor(curr);
 		}
+		
+		path.add(0, start);
 		
 //		System.out.println(path);
 		return path;
@@ -101,7 +115,7 @@ public class LabeledGraph<E, T> {
 				if(n.info.equals(target)) {
 					
 //					System.out.println("FOUND IT!");
-					System.out.println(backTrace(n, leadsTo));
+					System.out.println(backTrace(vertices.get(start), n, leadsTo));
 					
 					
 				} else {
@@ -118,7 +132,20 @@ public class LabeledGraph<E, T> {
 	
 	public static void main(String[] args) {
 		
-		LabeledGraph<String, String> g = new LabeledGraph<String, String>();
+		LabeledGraph<Integer, String> g = new LabeledGraph<Integer, String>();
+		g.addVertex(1);
+		g.addVertex(2);
+		g.addVertex(3);
+		g.addVertex(4);
+		g.addVertex(5);
+		
+		g.connect(1, 2, "a");
+		g.connect(1, 3, "b");
+		g.connect(2, 4, "c");
+		g.connect(4, 5, "d");
+		
+		g.BFS(1, 5);
+		
 		
 	}
 	
