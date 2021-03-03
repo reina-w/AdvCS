@@ -45,7 +45,7 @@ public class LocationGraph<E> {
 		public Vertex getNeighbor(Vertex v) {
 			
 			if(v.info.equals(v1.info)) return v2;
-			return v1; 
+			return v1;
 		}
 	}
 	
