@@ -68,6 +68,8 @@ public class USHMap {
 					g.setColor(cColor);
 					g.fillOval(x-cWidth/2, y-cWidth/2, cWidth, cWidth);
 					
+					
+					//get all edges and neighbors
 					for(Edge e: myGraph.vertices.get(v).edges) {
 						
 						int x2 = e.getNeighbor(myGraph.vertices.get(v)).xLoc;
