@@ -9,7 +9,7 @@ public class LocationGraph<E> {
 	
 	private final double INF = Integer.MAX_VALUE;
 	
-	private class Vertex {
+	class Vertex {
 		
 		E info;
 		int xLoc, yLoc;
@@ -31,7 +31,7 @@ public class LocationGraph<E> {
 		}
 	}
 	
-	private class Edge {
+	public class Edge {
 		
 		Vertex v1, v2;
 		double label;
