@@ -78,9 +78,9 @@ public class LocationGraph<E> {
 	
 
 	//the helper method for BFS to return the path
-	public ArrayList<Object> backTrace(Vertex start, Vertex target, HashMap<Vertex, Edge> leads) {
+	public ArrayList<E> backTrace(Vertex start, Vertex target, HashMap<Vertex, Edge> leads) {
 		
-		ArrayList<Object> path = new ArrayList<Object>();
+		ArrayList<E> path = new ArrayList<E>();
 		Vertex curr = target;
 
 		//when curr has not reached the first vertex
@@ -88,20 +88,18 @@ public class LocationGraph<E> {
 			
 			//put the current vertex at the front
 			path.add(0, curr.info);
-			//put the edge at the front
-			path.add(0, leads.get(curr));
 			//move on tot the previous vertex
 			curr = leads.get(curr).getNeighbor(curr);
 		}
 		
-		path.add(0, start);
+		path.add(0, start.info);
 		
 		return path;
 		
 	}
 	
 	//used for findConnection function in the game
-	public ArrayList<Object> Dijkstras(E start, E target) {
+	public ArrayList<E> Dijkstras(E start, E target) {
 		
 		//the vertices that are going to be visited
 		priorityQ<Vertex> toVisit = new priorityQ<>();
@@ -128,7 +126,7 @@ public class LocationGraph<E> {
 			
 			//get the first vertex in toVisit and remove it from the list
 			Vertex curr = toVisit.pop().info;
-			System.out.println(curr.info);
+//			System.out.println(curr.info);
 			
 			//check if it is the target
 			if(curr.equals(vertices.get(target))) {
