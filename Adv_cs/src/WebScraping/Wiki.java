@@ -60,11 +60,11 @@ public class Wiki {
 	 	displayArea.setWrapStyleWord(true);
 	 	
 	 	
-//	 	// been displayed throughout the program
-//	 	JScrollPane scroll = new JScrollPane (displayArea);
-//	 	scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//	 	scroll.setPreferredSize(new Dimension(WIDTH-BORDER,HEIGHT-T_HEIGHT));
-//	 	bottomPanel.add(scroll);
+	 	// been displayed throughout the program
+	 	JScrollPane scroll = new JScrollPane (displayArea);
+	 	scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	 	scroll.setPreferredSize(new Dimension(WIDTH-BORDER,HEIGHT-T_HEIGHT));
+	 	bottomPanel.add(scroll);
 	 	
 	 	
 	 	//add the displayArea to the drawPanel
