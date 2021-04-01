@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -25,16 +26,16 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
-public class Weather {
+public class Wiki {
 	
-	private final int WIDTH = 500, HEIGHT = 400, T_HEIGHT = 70, BORDER = 30;
+	private final int WIDTH = 800, HEIGHT = 700, T_HEIGHT = 70, BORDER = 30;
 	private Color buttonBg = new Color(190, 207, 194), displayBg = new Color(225, 235, 227);
 	private int blankW = 170, blankH = 20;
 	private Font myFont = new Font("SansSerif", Font.BOLD, 20);
 	
 	
 	
-	public Weather() {
+	public Wiki() {
 		
 		//frame set up
 		JFrame frame = new JFrame();
@@ -47,14 +48,23 @@ public class Weather {
 		//panel layout
 		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
 		panel.setLayout(boxlayout);
-		panel.setBorder(BorderFactory.createTitledBorder("Weather Forecast"));
-		
-		
+		panel.setBorder(BorderFactory.createTitledBorder("Wikipedia"));
+				
+				
 		//initializes a display area, which cannot be typed into
 	 	JTextArea displayArea = new JTextArea();
 	 	displayArea.setBackground(displayBg);
 	 	displayArea.setEditable(false);
 	 	displayArea.setPreferredSize(new Dimension(WIDTH-BORDER, HEIGHT-T_HEIGHT));
+	 	displayArea.setLineWrap(true);
+	 	displayArea.setWrapStyleWord(true);
+	 	
+	 	
+//	 	// been displayed throughout the program
+//	 	JScrollPane scroll = new JScrollPane (displayArea);
+//	 	scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//	 	scroll.setPreferredSize(new Dimension(WIDTH-BORDER,HEIGHT-T_HEIGHT));
+//	 	bottomPanel.add(scroll);
 	 	
 	 	
 	 	//add the displayArea to the drawPanel
@@ -64,35 +74,33 @@ public class Weather {
 		//instruction
 		JTextArea title = new JTextArea();
 	    title.setEditable(false);
-	    title.setText("    Please enter a city/town: ");
+	    title.setText("    Enter a name: ");
 	    title.setBackground(buttonBg);
 	    
 		//blank
-		JTextArea city = new JTextArea();
-	    city.setEditable(true);
-	    city.setPreferredSize(new Dimension(blankW, blankH));
+		JTextArea name = new JTextArea();
+	    name.setEditable(true);
+	    name.setPreferredSize(new Dimension(blankW, blankH));
 	    
 	    //search button
 	  	JButton searchB = new JButton("Search");
 	  	searchB.addActionListener(new ActionListener() {
 	  		public void actionPerformed(ActionEvent e) {
-	  			String[] ans = search(city.getText().toLowerCase());
-	  			displayArea.setText("");
-	  			for(int i=0; i<ans.length; i++) {
-	  				if(ans[i] != null) {
-	  					displayArea.setText(displayArea.getText()
-		  						+ "\n\t" + ans[i]);
-	  				}
-	  				
-	  			}
-	  			
+//	  			ArrayList<String> ans = search(name.getText());
+//	  			displayArea.setText("");
+//	  			for(int i=0; i<ans.size(); i++) {
+//	  				displayArea.setText(displayArea.getText()
+//		  						+ "\n\t" + ans.get(i));
+//	  				
+//	  			}
+	  		
 	  		}
 	  	});
 	    
 	    
 	    //adding JTextArea & button to the innerpanel
 	    topPanel.add(title);
-	    topPanel.add(city);
+	    topPanel.add(name);
 	    topPanel.add(searchB);
 	  
 	  
@@ -120,35 +128,17 @@ public class Weather {
 				
 	}
 	
-	public String[] search(String loc) {
+	public ArrayList<String> search(String n) {
 		
-		String[] ans = new String[6];
+		ArrayList<String> ans = new ArrayList<>();
+		n = n.replaceAll(" ", "_");
 		
 		try {
-			Document doc = Jsoup.connect("https://www.google.com/search?q=" + loc + "+weather").get();
-			
-			try {
-				Element time = doc.getElementById("wob_dts");
-				ans[0] = "Time: \t" + time.text();
-				
-				Element temp = doc.getElementById("wob_tm");
-				ans[1] = "Temperature: \t" + temp.text() + "˚F";
-				
-				Element pp = doc.getElementById("wob_pp");
-				ans[2] = "Precipitation: \t" + pp.text();
-				
-				Element hu = doc.getElementById("wob_hm");
-				ans[3] = "Humidity: \t" + hu.text();
-				
-				Element wind = doc.getElementById("wob_ws");
-				ans[4] = "Wind: \t" + wind.text();
-				
-				Element w = doc.getElementById("wob_dc");
-				ans[5] = "Weather: \t" + w.text();
-				
-			} catch (NullPointerException e) {
-				
-				ans[0] = "Sorry, please type a correct city/town.";
+			Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/" + n).get();
+			Elements paragraphs = doc.getElementsByTag("p");
+			for(Element p : paragraphs) {
+				ans.add(p.text());
+				System.out.println(p.text());
 			}
 			
  			
@@ -157,12 +147,12 @@ public class Weather {
 			
 		}
 		
-		return ans;
+		return null;
 	}
 	
 	public static void main(String[] args) {
 		
-		new Weather();
+		new Wiki();
 		
 	}
 
