@@ -28,11 +28,11 @@ import org.jsoup.select.Elements;
 
 public class Wiki {
 	
+	//class variables 
 	private final int WIDTH = 800, HEIGHT = 700, T_HEIGHT = 70, BORDER = 30;
 	private Color buttonBg = new Color(190, 207, 194), displayBg = new Color(225, 235, 227);
 	private int blankW = 170, blankH = 20;
-	private Font myFont = new Font("SansSerif", Font.BOLD, 20);
-	
+	private String myTab = "          "; //a helper variable for better formatting
 	
 	
 	public Wiki() {
@@ -55,27 +55,22 @@ public class Wiki {
 	 	JTextArea displayArea = new JTextArea();
 	 	displayArea.setBackground(displayBg);
 	 	displayArea.setEditable(false);
-	 	displayArea.setPreferredSize(new Dimension(WIDTH-BORDER, HEIGHT-T_HEIGHT));
 	 	displayArea.setLineWrap(true);
 	 	displayArea.setWrapStyleWord(true);
 	 	
 	 	
-	 	// been displayed throughout the program
+	 	// all information can be displayed throughout the program
 	 	JScrollPane scroll = new JScrollPane (displayArea);
 	 	scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	 	scroll.setPreferredSize(new Dimension(WIDTH-BORDER,HEIGHT-T_HEIGHT));
 	 	bottomPanel.add(scroll);
-	 	
-	 	
-	 	//add the displayArea to the drawPanel
-	 	bottomPanel.add(displayArea);
 	    
 	 	
 		//instruction
-		JTextArea title = new JTextArea();
-	    title.setEditable(false);
-	    title.setText("    Enter a name: ");
-	    title.setBackground(buttonBg);
+		JTextArea topic = new JTextArea();
+	    topic.setEditable(false);
+	    topic.setText("    Enter a topic: ");
+	    topic.setBackground(buttonBg);
 	    
 		//blank
 		JTextArea name = new JTextArea();
@@ -86,28 +81,32 @@ public class Wiki {
 	  	JButton searchB = new JButton("Search");
 	  	searchB.addActionListener(new ActionListener() {
 	  		public void actionPerformed(ActionEvent e) {
-//	  			ArrayList<String> ans = search(name.getText());
-//	  			displayArea.setText("");
-//	  			for(int i=0; i<ans.size(); i++) {
-//	  				displayArea.setText(displayArea.getText()
-//		  						+ "\n\t" + ans.get(i));
-//	  				
-//	  			}
+	
+	  			//get all text from search method
+	  			ArrayList<String> ans = search(name.getText());
+	  			displayArea.setText("");
+	  			for(int i=0; i<ans.size(); i++) {
+	  				
+	  				//no need for two spaced lines if it is the first element
+	  				if(i==0) displayArea.setText(displayArea.getText()
+	  						+ myTab + ans.get(i));
+	  				//line spacing & tab for better formatting
+	  				else displayArea.setText(displayArea.getText()
+		  						+ "\n\n" + myTab + ans.get(i));
+	  				
+	  			}
 	  		
 	  		}
 	  	});
 	    
-	    
 	    //adding JTextArea & button to the innerpanel
-	    topPanel.add(title);
+	    topPanel.add(topic);
 	    topPanel.add(name);
 	    topPanel.add(searchB);
-	  
 	  
 	    //settings of the topPanel
 	    topPanel.setBackground(buttonBg);
 	    topPanel.setPreferredSize(new Dimension(WIDTH, T_HEIGHT));
-	    
 	    
 	    //settings of the bottomPanel
 	    bottomPanel.setBackground(buttonBg);
@@ -128,27 +127,61 @@ public class Wiki {
 				
 	}
 	
+	//search method for getting information
 	public ArrayList<String> search(String n) {
 		
 		ArrayList<String> ans = new ArrayList<>();
+		
+		//url format
 		n = n.replaceAll(" ", "_");
 		
+		//the common words that appear when there are multiple possible definitions
+		String w1 = "most commonly refers to:";
+		String w2 = "may refer to:";
+		
 		try {
+	
 			Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/" + n).get();
+			Element body = doc.select("div#bodyContent").first();
 			Elements paragraphs = doc.getElementsByTag("p");
-			for(Element p : paragraphs) {
-				ans.add(p.text());
-				System.out.println(p.text());
+			
+			boolean cando = true;
+			
+			for(int i=0; i<=2; i++) {
+				
+				//when there are multiple definitions
+				if(paragraphs.get(i).text().contains(w1) 
+						|| paragraphs.get(i).text().contains(w2)) {
+					String s1 = "Your topic may refer to the following definitions:";
+					ans.add(s1);
+					ans.add("(1) " + body.select("a").get(3).text());
+					ans.add("(2) " + body.select("a").get(4).text());
+					String s2 = "If one of the above is what you are looking for, "
+							+ "please copy and paste the correct format into the blank. ";
+					String s3 = "If not, please try to phrase the topic in a more detailed format. "
+							+ "Thank you!";
+					ans.add(s2);
+					ans.add(s3);
+					cando = false;
+				}
+				if(!cando) break;
 			}
 			
+			//when the link directs to the correct page
+			if(cando) {
+				
+				for(Element para : paragraphs) {
+					ans.add(para.text());
+				}
+			}
  			
 		} catch (IOException e) {
 			System.out.println("Couldn't connect");
-			
 		}
 		
-		return null;
+		return ans;
 	}
+	
 	
 	public static void main(String[] args) {
 		
