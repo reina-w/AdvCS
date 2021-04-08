@@ -154,8 +154,26 @@ public class Wiki {
 						|| paragraphs.get(i).text().contains(w2)) {
 					String s1 = "Your topic may refer to the following definitions:";
 					ans.add(s1);
-					ans.add("(1) " + body.select("a").get(3).text());
-					ans.add("(2) " + body.select("a").get(4).text());
+					
+					int cnt = 1;
+					
+					//get the div which contains the useful urls
+					body = doc.getElementsByClass("mw-parser-output").first();
+					for(Element ch : body.children()) {
+						if(ch.is("ul")) {
+							//get all the links
+							for(Element link : ch.select("a")) {
+								ans.add("(" + cnt + ") " + link.text());
+								cnt++;
+							}
+							
+						}
+						//print out around first 10 links 
+						//but it depends on how many links in each "ul"
+						if(cnt >= 10) break;
+					}
+					
+					//instructions
 					String s2 = "If one of the above is what you are looking for, "
 							+ "please copy and paste the correct format into the blank. ";
 					String s3 = "If not, please try to phrase the topic in a more detailed format. "
